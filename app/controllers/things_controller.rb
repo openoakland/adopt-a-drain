@@ -2,7 +2,7 @@ class ThingsController < ApplicationController
   respond_to :json
 
   def show
-    @things = Thing.limit(1000)
+    @things = Thing.limit(Rails.application.config.things_limit)
 
     unless @things.blank?
       for t in @things

@@ -56,5 +56,8 @@ module AdoptAThing
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Limit on number of things to be returned from the database
+    config.things_limit = 10
   end
 end
