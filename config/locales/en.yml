@@ -31,7 +31,7 @@ en:
     state: "CA"
     thing: "storm drain"
     this_thing: "This %{thing}"
-    tagline: "Claim responsibility for clearing a storm drain entrance and reporting any problems."
+    tagline: "Volunteer to keep a storm drain clear and report any problems!"
     tos: "By signing up, you agree to the %{tos}."
     voice_number: "510-555-1212"
     zip: "94612"
