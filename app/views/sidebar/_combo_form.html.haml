@@ -26,7 +26,7 @@
       %label{:for => "user_voice_number", :id => "user_voice_number_label"}
         = t("labels.voice_number")
         %small
-          = image_tag "lock.png", :class => "lock", :alt => t("captions.private"), :title => t("captions.private")
+          = image_tag "lock.png", :alt => t("captions.private"), :title => t("captions.private")
       = f.telephone_field "voice_number", :placeholder => t("defaults.voice_number")
     %fieldset.control-group
       %label{:for => "user_sms_number", :id => "user_sms_number_label"}

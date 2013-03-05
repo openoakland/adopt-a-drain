@@ -8,6 +8,38 @@ task :send_monthly_personalized => :environment do
   ThingMailer.send_personalized
 end
 
+desc "This task is called by the Heroku scheduler add-on to subscribe recent adopters to the adopt-a-drain email list"
+task :subscribe_recent_adopters, [:host, :api_key] => :environment do |t, args|
+	require 'httparty'
+
+	hostname = args[:host]
+	unless hostname
+		fail "Set first arg to correct hostname for staging or production GovDelivery server"
+	end
+	topic_id = "CAOAKL_58"
+	api_key = args[:api_key]
+	unless api_key
+		fail "Set second arg to correct api key for staging or production GovDelivery server"
+	end
+	api_root = "https://#{hostname}"
+
+	# Subscribe all users who have adopted a drain and not yet been subscribed to the mailing list.
+	# We don't resubscribe on each adoption, since we don't know if they intentionally unsubscribed previously.
+	sql = "select distinct (u.*) from things_users tu inner join users u on u.id = tu.user_id where subscribed_at is NULL"
+	User.find_by_sql(sql).each do |user|
+		request_path = "/api/add_script_subscription?t=#{topic_id}&k=#{api_key}&e=#{user.email}"
+		uri = api_root + request_path
+		Rails.logger.info "Attempting to subscribe #{user.email}"
+		begin
+			response = HTTParty.get(uri)
+			Rails.logger.info response.body
+			# ToDo: Examine response body and set subscribed_at only if we're sure the request succeeded
+			user.update_attributes(:subscribed_at => Time.current)
+		rescue
+			Rails.logger.error "Error subscribing #{user.email}"
+		end
+	end
+end
 
 desc "This task is called by the Heroku scheduler add-on to send out personalized monthly reminders"
 task :send_reminder => :environment do

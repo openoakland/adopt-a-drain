@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605230246) do
+ActiveRecord::Schema.define(:version => 20130225055407) do
 
   create_table "geometry_columns", :id => false, :force => true do |t|
     t.string  "f_table_catalog",   :limit => 256, :null => false
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20120605230246) do
     t.string   "state"
     t.string   "zip"
     t.datetime "reset_password_sent_at"
+    t.datetime "subscribed_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

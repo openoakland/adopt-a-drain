@@ -30,6 +30,7 @@ class ThingsController < ApplicationController
         @thing.update_attributes({:name=>params[:thing][:name]})
       end
       if !@thing.adopted_by(params[:thing][:user_id])
+        current_user.update_attributes(:last_adoption_at => Time.current)
         @thing.users << current_user
       end
     end
