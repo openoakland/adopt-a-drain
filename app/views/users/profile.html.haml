@@ -3,6 +3,4 @@
 - @thing.users.each do |u|
   = t("titles.byline", :name => u.name)
   = t("titles.ofline", :organization => u.organization) unless u.organization.blank?
-  %br 
-%h6
-  = t("titles.sign_in", :thing => t("defaults.thing").titleize)
+  %br

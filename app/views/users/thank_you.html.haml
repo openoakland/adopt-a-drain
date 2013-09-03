@@ -1,8 +1,4 @@
 %h2
   = t("titles.thank_you", :thing => t("defaults.thing"))
 %p
-  - if thing.users.length > 1
-    ="#{thing.users.length} people adopted: #{thing.name}"
-  - else
-    ="#{thing.users.length} person adopted: #{thing.name}"
   = render :partial => 'things/abandon'
