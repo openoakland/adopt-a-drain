@@ -17,7 +17,7 @@ en:
     update: "Update"
   captions:
     optional: "(optional)"
-    private: "(private)"
+    private: "Only visible to Administrators"
     public: "(visible to others)"
     required: "(required)"
   defaults:
@@ -77,7 +77,7 @@ en:
     adopted: "%{thing_name} has been adopted"
     byline: "by %{name}"
     edit_profile: "Edit your Profile"
-    main: "City of Oakland: Adopt-a-%{thing}"
+    main: "Adopt A %{thing} feedback for the City of Oakland"
     ofline: "of %{organization}"
     sign_in: "Sign in to adopt this %{thing}"
     thank_you: "Thank you for adopting this %{thing}!"
