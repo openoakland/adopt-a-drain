@@ -5,7 +5,7 @@ require 'open-uri'
 
 # url = '/Users/eddie/Downloads/drainswgs84.csv'
 # url = 'http://data.openoakland.org/storage/f/2012-11-01T014902/Inlets.csv'
-url = 'http://data.openoakland.org/en/storage/f/2013-12-08T214045/drainswgs84.csv'
+url = 'http://data.openoakland.org/sites/default/files/oakdrainsgeo.csv'
 
 # puts 'removing old things data'
 # Thing.destroy_all
@@ -22,9 +22,9 @@ open(url) do |f|
       if(row[0] == "OBJECTID_1")
         next
       else
-        city_id = row[0].to_i
-        lat = row[6].to_f
-        lng = row[7].to_f
+        city_id = row[2].to_i
+        lat = row[4].to_f
+        lng = row[3].to_f
         puts "#{row} "        
 
         if city_id > 1        
